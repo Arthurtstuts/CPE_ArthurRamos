@@ -1,0 +1,57 @@
+/* 2 - Escreva um programa que imprima os seguintes padrões separadamente, um abaixo do outro, cada padrão separado do próximo por uma linha em branco.
+Use laços for para gerar os padrões. Todos os asteriscos (*) devem ser impressos por uma única declaração na forma: `cout << '*' ;` o que faz com que os asteriscos imprimam lado a lado,
+uma declaração no formato `cout << '\n';` pode ser usado para passar para a próxima linha. Uma instrução no formato `cout << ' ';` pode ser usado para exibir um espaço para os dois últimos padrões.
+(Dica: os dois últimos padrões exigem que cada linha comece com um número apropriado de espaços em branco.)
+
+Crédito extra: combine seu código dos quatro problemas separados em um único programa que imprime todos os quatro padrões lado a lado,
+fazendo um uso inteligente dos laços aninhados for. Para todas as partes deste exercício - minimize o número de asteriscos e espaços e o número de instruções que imprimem esses caracteres. */
+
+#include <iostream>
+using namespace std;
+
+int main (){
+	
+	int i, j;
+	
+	for (i = 1; i <= 10; ++i){
+		for (j = 1; j <= i; ++j){
+			cout << "*";
+		}
+		cout << endl;
+	}
+
+	cout << endl;
+
+	for (i = 10; i >= 1; --i){
+		for (j = 1; j <= i; ++j){
+			cout << "*";
+		}
+		cout << endl;
+	}
+	 
+	cout << endl;
+	
+	for (i = 10; i >= 1; --i){
+		for (j = 1; j <= 10 - i; ++j){
+			cout << " ";
+		}
+		for (j = 1; j <= i; ++j){
+			cout << "*";
+		}
+		cout << endl;
+	}
+	
+	cout << endl;
+	
+	for (i = 1; i <= 10; ++i){
+		for (j = 1; j <= 10 - i; ++j){
+			cout << " ";
+		}
+		for (j = 1; j <= i; ++j){
+			cout << "*";
+		}
+		cout << endl;
+	}
+	
+	return 0;
+}
