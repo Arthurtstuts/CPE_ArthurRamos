@@ -1,0 +1,24 @@
+// 1 - C) Escreva um programa que calcule o valor da constante matemática 'e^x' usando a seguinte fórmula (Nota: Seu código pode parar após somar 10 termos.)
+
+#include <iostream>
+using namespace std; 
+
+int main (){
+	// esse código é apenas uma complicação do item 1 - B, mas pode ser resolvido com o mesmo tipo de processo com algumas modificações
+	double x;
+	
+	cout << "Valor de 'x': " << endl;
+	cin >> x;
+	
+	double e = 1; 
+	double termo = 1; 
+	
+	for (int i = 1; i <= 10; ++i) {
+		termo *= x/i; 
+		e += termo;
+	}
+	
+	cout << "e^x = " << e << endl;
+	
+	return 0;
+}
