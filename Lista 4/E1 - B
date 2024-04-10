@@ -4,11 +4,12 @@
 using namespace std; 
 
 int main (){
-	
+
+	int i;
 	double e = 1; // como a formula começa em 1/0! (= 1) e após isso dá continuidade para 1/1! e posteriormente, iniciar o valor de e em 1 garante esse 1/0! seja incluído na série
 	double termo = 1; // primeiro termo = 1/1! = 1
 	
-	for (int i = 1; i <= 10; ++i) {
+	for (i = 1; i <= 10; ++i) {
 		termo /= i; // o próximo termo é sempre o termo anterior dividido pelo próximo fatorial, ou seja, basta apenas dividir ele novamente pelo próximo valor de i incrementado por 1
 		e += termo;
 	}
