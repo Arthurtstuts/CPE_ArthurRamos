@@ -1,0 +1,25 @@
+// 1 - A) Escreva um programa que leia um número inteiro não negativo e calcule e imprima seu fatorial.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, fatorial = 1, i = 1;
+
+    cout << "Numero inteiro nao negativo: " << endl;
+    cin >> n;
+
+    if (n < 0) {
+        cout << "o numero e negativo" << endl; // evitar erros
+    } else {
+
+        while (i <= n) {
+            fatorial *= i;
+            i++;
+        }
+
+        cout << "O fatorial de " << n << " e: " << fatorial << endl;
+    }
+
+    return 0;
+}
