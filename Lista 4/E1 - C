@@ -9,11 +9,12 @@ int main (){
 	
 	cout << "Valor de 'x': " << endl;
 	cin >> x;
-	
+
+	int i;
 	double e = 1; 
 	double termo = 1; 
 	
-	for (int i = 1; i <= 10; ++i) {
+	for (i = 1; i <= 10; ++i) {
 		termo *= x/i; 
 		e += termo;
 	}
