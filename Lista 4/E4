@@ -1,0 +1,60 @@
+/* 4 - (Cálculo de vendas) Um varejista on-line vende cinco produtos cujos preços de varejo são os seguintes:
+Produto 1, R$ 2,98; produto 2, R$ 4,50; produto 3, R$ 9,98; produto 4, R$ 4,49 e produto 5, R$ 6,87.
+Escreva um aplicativo que leia uma série de pares de números da seguinte forma:
+A. número do produto
+B. quantidade vendida
+Seu programa deve usar uma instrução switch para determinar o preço de varejo para cada produto.
+Deve calcular e exibir o valor total de varejo de todos os produtos vendidos. Use um laço 'while' para determinar quando o programa deve parar e exibir os resultados finais. */
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    double preco1 = 2.98;
+    double preco2 = 4.50;
+    double preco3 = 9.98;
+    double preco4 = 4.49;
+    double preco5 = 6.87;
+
+    int nProd;
+    int qtdeVenda;
+    double totalVenda = 0.0;
+
+    while (true) {
+        cout << "Numero do produto: " << endl;
+        cout << "Digite '0' para encerrar a venda" << endl;
+        cin >> nProd;
+
+        if (nProd == 0) {
+            break; // 'while (true)' faz com que o programa rode em loop infinito até que essa condição 'break' seja atendida
+        }
+
+        cout << "Quantidade vendida: ";
+        cin >> qtdeVenda;
+
+        switch (nProd) {
+            case 1:
+                totalVenda += preco1 * qtdeVenda;
+                break;
+            case 2:
+                totalVenda += preco2 * qtdeVenda;
+                break;
+            case 3:
+                totalVenda += preco3 * qtdeVenda;
+                break;
+            case 4:
+                totalVenda += preco4 * qtdeVenda;
+                break;
+            case 5:
+                totalVenda += preco5 * qtdeVenda;
+                break;
+            default:
+                cout << "Produto invalido." << endl;
+                break;
+        }
+    }
+
+    cout << "Total: " << totalVenda << "R$" << endl;
+
+    return 0;
+}
