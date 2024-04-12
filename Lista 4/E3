@@ -1,0 +1,29 @@
+/* 3 - (Triplos de pitágoras) Um triângulo retângulo pode ter lados que são todos inteiros.
+O conjunto de três valores inteiros para os lados de um triângulo retângulo é chamado de triplo de pitágoras.
+Esses três lados devem satisfazer a relação de que a soma dos quadrados de dois dos lados é igual ao quadrado da hipotenusa.
+Encontre todos os triplos pitagóricos para lado1, lado2 e hipotenusa, todos com tamanho não superior a 20. Use um laço for triplamente aninhado que tente todas as possibilidades.
+Este é um exemplo de computação de "força bruta". Você aprenderá em cursos de ciência da computação mais avançados que existem muitos problemas interessantes para os quais não existe
+uma abordagem algorítmica conhecida além da pura força bruta. */
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	int cateto1;
+	int cateto2;
+	int hipotenusa;
+
+    for (cateto1 = 1; cateto1 <= 20; ++cateto1) { // colocando esses loops 'for' em sequência eu consegui com que ele calculasse todas as combinações possíveis para cada lado
+        for (cateto2 = cateto1; cateto2 <= 20; ++cateto2) { 
+// confesso que tive que pesquisar, mas colocando 'cateto2 = cateto1' nessa linha é possível impedir que as iterações se repitam com o valor dos catetos invertidos, eu tentei várias combinações diferentes para fazer isso apenas para descobrir que era uma solução muito simples
+            for (hipotenusa = 1; hipotenusa <= 20; ++hipotenusa) {
+                if (cateto1 * cateto1 + cateto2 * cateto2 == hipotenusa * hipotenusa) { // se a combinação funcionar, ele imprime o resultado e inicia uma nova iteração
+                    cout << "Lado1: " << cateto1 << ", Lado2: " << cateto2 << ", Hipotenusa: " << hipotenusa << endl;
+                } // caso o contrário, os valores simplesmentes não são impressos, não sendo necessário o comando 'else', pois o loop 'for' continua mesmo se o 'if' não for atendido
+            }
+        }
+    }
+
+    return 0;
+}
