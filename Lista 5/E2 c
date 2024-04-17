@@ -1,0 +1,34 @@
+/*  c) Inicialmente, você pode pensar que n / 2 é o limite superior para o qual você deve testar se um número é primo, mas você precisa ir apenas até a raiz quadrada de n.
+Reescreva o código e execute-o nas duas maneiras para mostrar que você obtém o mesmo resultado. */
+
+#include <iostream>
+using namespace std;
+
+bool primo(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    
+    int i;
+    
+    for (i = 2; i * i <= n; i++) { // a única alteração que precisa ser feita é nessa linha, onde mudamos de 'i <= n/2' no exercício A para 'i * i <= n'
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    cout << "Numero inteiro: ";
+    cin >> n;
+
+    if (primo(n)) { // se a função 'primo' for verdadeira
+        cout << n << " e primo." << endl;
+    } else {
+        cout << n << " nao e primo." << endl;
+    }
+
+    return 0;
+}
