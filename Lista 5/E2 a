@@ -1,24 +1,32 @@
-/* 1 - Implemente a seguinte função para retornar o equivalente em Fahrenheit de uma temperatura Celsius.
-
-F = 9/5 * C + 32
-
-Use esta função para escrever um código que imprima uma tabela mostrando os equivalentes em Fahrenheit de todas as temperaturas Celsius de 0 a 100 graus.
-Use uma posição de precisão à direita do ponto decimal para os resultados. Imprima as saídas em um formato tabular limpo que minimize o número de linhas de saída enquanto permanece legível. */
+// 2. a) Escreva uma função que determine se um número é primo.
 
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
-double CparaF(double C) { // função que converte Celcius para Farenheit
-	return 9.0 / 5.0 * C + 32;
+bool primo(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    
+    int i;
+    
+    for (i = 2; i <= n/2; i++) {
+        if (n % i == 0) { // se em qualquer uma das iterações a divisão retornar um valor de resto 0, o número não é primo
+            return false;
+        }
+    }
+    return true;
 }
 
 int main() {
-    cout << "Celsius    Fahrenheit" << endl;
+    int n;
+    cout << "Numero inteiro: ";
+    cin >> n;
 
-    for (int C = 0; C <= 100; C++) {
-        double F = CparaF(C);
-        cout << C << "              " << F << endl;
+    if (primo(n)) { // se a função 'primo' for verdadeira
+        cout << n << " e primo." << endl;
+    } else {
+        cout << n << " nao e primo." << endl;
     }
 
     return 0;
