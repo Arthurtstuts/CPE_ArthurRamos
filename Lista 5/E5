@@ -1,0 +1,43 @@
+/* 5. Escreva um código que reproduza o jogo de “adivinhar o número” da seguinte forma:
+Seu programa escolhe o número a ser adivinhado selecionando um número inteiro aleatoriamente no intervalo de 1 a 1000.
+O programa exibe "Eu tenho um número entre 1 e 1000. Você consegue adivinhar o meu número? Digite seu primeiro palpite.
+" O jogador digita um primeiro palpite. O programa responde com um dos seguintes: 1. Excelente! Você adivinhou o número!
+Você gostaria de jogar novamente (s ou n)? 2. Muito baixo. Tente novamente. 3. Muito alto. Tente novamente.
+Se o palpite do jogador estiver incorreto, seu programa deve repetir até que o jogador finalmente obtenha o número correto.
+Seu programa deve continuar dizendo ao reprodutor Muito alto ou Muito baixo para ajudar o leitor a se concentrar na resposta correta.
+Após o término do jogo, o programa deve solicitar ao usuário que digite "s" para jogar novamente ou "n" para sair do jogo. */
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main() {
+    char novamente = 's'; // Atribuí o valor inicial do char 'novamente' para ele imediatamente iniciar o loop while
+
+    while (novamente == 's' || novamente == 'S') {
+        int numero = rand() % 1001;
+        int palpite, tentativa = 0;
+
+        cout << "Eu tenho um numero entre 1 e 1000." << endl;
+        cout << endl;
+        cout << "Voce consegue adivinhar o meu numero?" << endl;
+
+        do { // achei esse loop 'do-while' na internet, que permite que eu execute um loop while ao final da condicional, achei muito mais útil
+            cout << "Digite seu palpite: ";
+            cin >> palpite;
+            tentativa++;
+
+            if (palpite < numero) {
+                cout << "Muito baixo. Tente novamente." << endl;
+            } else if (palpite > numero) {
+                cout << "Muito alto. Tente novamente." << endl;
+            }
+        } while (palpite != numero); // a única diferença é que agora posso colocar o 'while' no final da condicional
+
+        cout << "Excelente! Você adivinhou o número em " << tentativa << " tentativas." << endl;
+        cout << "Você gostaria de jogar novamente (s ou n)? ";
+        cin >> novamente;
+    }
+
+    return 0;
+}
