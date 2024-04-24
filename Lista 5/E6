@@ -13,7 +13,10 @@ void hanoi(int n, char origem, char destino, char auxiliar) {
 }
 
 int main() {
-    int nDiscos = 3;
+    int nDiscos;
+    
+    cout << "Numero de discos: ";
+    cin >> nDiscos;
     hanoi(nDiscos, 'A', 'C', 'B');
     return 0;
 }
