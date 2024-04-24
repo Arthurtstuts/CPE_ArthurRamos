@@ -13,7 +13,7 @@ void hanoi(int n, char origem, char destino, char auxiliar) {
 }
 
 int main() {
-    int nDiscos = 3; // Número de discos
-    hanoi(nDiscos, 'A', 'C', 'B'); // Chama a função para mover os discos da estaca A para a estaca C
+    int nDiscos = 3;
+    hanoi(nDiscos, 'A', 'C', 'B');
     return 0;
 }
