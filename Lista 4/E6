@@ -22,7 +22,7 @@ int main() {
         cin >> resposta;
 
         if (resposta == 1) {
-            metade -= metade/2;
+            		metade -= metade/2;
 			meio -= metade;
         } else if (resposta == 2) {
 			metade -= metade/2;
