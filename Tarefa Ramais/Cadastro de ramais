@@ -1,0 +1,102 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct Ramal {
+    int numero;
+    int categoria;
+    string setor;
+    int edificio;
+    int sala;
+    string responsavelRamal;
+    string responsavelConta;
+};
+
+void cadastrarRamal(vector<Ramal>& ramais) {
+    Ramal novoRamal;
+
+    cout << "Numero do ramal (1000-2999): ";
+    cin >> novoRamal.numero;
+
+    while (novoRamal.numero < 1000 || novoRamal.numero > 2999) {
+        cout << "Numero invalido. Digite um numero entre 1000 e 2999: ";
+        cin >> novoRamal.numero;
+    }
+
+    cout << "Categoria (0-6): ";
+    cin >> novoRamal.categoria;
+
+    while (novoRamal.categoria < 0 || novoRamal.categoria > 6) {
+        cout << "Categoria invalida. Digite um numero entre 0 e 6: ";
+        cin >> novoRamal.categoria;
+    }
+
+    cout << "Setor: ";
+    cin.ignore();
+    getline(cin, novoRamal.setor);
+
+    cout << "Edificio (500 ou 505): ";
+    cin >> novoRamal.edificio;
+
+    while (novoRamal.edificio != 500 && novoRamal.edificio != 505) {
+        cout << "Codigo de edificio invalido. Digite 500 ou 505: ";
+        cin >> novoRamal.edificio;
+    }
+
+    cout << "Sala: ";
+    cin >> novoRamal.sala;
+
+    cout << "Responsavel pelo ramal: ";
+    cin.ignore();
+    getline(cin, novoRamal.responsavelRamal);
+
+    cout << "Responsavel pelo ateste da conta telefonica: ";
+    getline(cin, novoRamal.responsavelConta);
+
+    ramais.push_back(novoRamal);
+}
+
+void exibirRamais(const vector<Ramal>& ramais) {
+    for (vector<Ramal>::const_iterator it = ramais.begin(); it != ramais.end(); ++it) {
+        const Ramal& ramal = *it;
+        cout << "Ramal: " << ramal.numero << endl;
+        cout << "Categoria: " << ramal.categoria << endl;
+        cout << "Setor: " << ramal.setor << endl;
+        cout << "Edificio: " << ramal.edificio << endl;
+        cout << "Sala: " << ramal.sala << endl;
+        cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+        cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+        cout << "--------------------------" << endl;
+    }
+}
+
+int main() {
+    vector<Ramal> ramais;
+    int opcao;
+
+    do {
+        cout << "1. Cadastrar ramal" << endl;
+        cout << "2. Exibir ramais" << endl;
+        cout << "3. Sair" << endl;
+        cout << "Escolha uma opcao: ";
+        cin >> opcao;
+
+        switch (opcao) {
+            case 1:
+                cadastrarRamal(ramais);
+                break;
+            case 2:
+                exibirRamais(ramais);
+                break;
+            case 3:
+                cout << "Saindo..." << endl;
+                break;
+            default:
+                cout << "Opcao invalida. Tente novamente." << endl;
+        }
+    } while (opcao != 3);
+
+    return 0;
+}
