@@ -1,3 +1,19 @@
+/*  
+Trabalho de Computacao para Engenharia
+Projeto Escolhido - Bingo
+
+
+Autores:
+1. Arthur Augusto Frasson Ramos
+2. Mateus
+3. Pedro Henrique Dias Avelar
+4. Vinicius Magao de Oliveira
+
+
+Data da versão: 26/06/2024
+*/
+
+
 #include <iostream>
 #include <cmath>
 #include <string>
