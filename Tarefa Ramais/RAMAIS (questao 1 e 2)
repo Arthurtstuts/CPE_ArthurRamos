@@ -1,0 +1,268 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+// AS DUAS QUESTÕES ESTÃO RESOLVIDAS NESTE CÓDIGO
+
+using namespace std;
+
+struct Ramal {
+    int numero;
+    int categoria;
+    string setor;
+    int edificio;
+    int sala;
+    string responsavelRamal;
+    string responsavelConta;
+};
+
+/* QUESTÃO 1: CADASTRO DE RAMAIS */
+
+void cadastrarRamal(vector<Ramal>& ramais) {
+    Ramal novoRamal;
+
+    cout << "Numero do ramal (1000-2999): ";
+    cin >> novoRamal.numero;
+
+    while (novoRamal.numero < 1000 || novoRamal.numero > 2999) {
+        cout << "Numero invalido. Digite um numero entre 1000 e 2999: ";
+        cin >> novoRamal.numero;
+    }
+
+    cout << "Categoria (0-6): ";
+    cin >> novoRamal.categoria;
+
+    while (novoRamal.categoria < 0 || novoRamal.categoria > 6) {
+        cout << "Categoria invalida. Digite um numero entre 0 e 6: ";
+        cin >> novoRamal.categoria;
+    }
+
+    cout << "Setor: ";
+    cin.ignore();
+    getline(cin, novoRamal.setor);
+
+    cout << "Edificio (500 ou 505): ";
+    cin >> novoRamal.edificio;
+
+    while (novoRamal.edificio != 500 && novoRamal.edificio != 505) {
+        cout << "Codigo de edificio invalido. Digite 500 ou 505: ";
+        cin >> novoRamal.edificio;
+    }
+
+    cout << "Sala: ";
+    cin >> novoRamal.sala;
+
+    cout << "Responsavel pelo ramal: ";
+    cin.ignore();
+    getline(cin, novoRamal.responsavelRamal);
+
+    cout << "Responsavel pelo ateste da conta telefonica: ";
+    getline(cin, novoRamal.responsavelConta);
+
+    ramais.push_back(novoRamal);
+}
+
+void exibirRamais(const vector<Ramal>& ramais) {
+    for (size_t i = 0; i < ramais.size(); ++i) {
+        const Ramal& ramal = ramais[i];
+        cout << "Ramal: " << ramal.numero << endl;
+        cout << "Categoria: " << ramal.categoria << endl;
+        cout << "Setor: " << ramal.setor << endl;
+        cout << "Edificio: " << ramal.edificio << endl;
+        cout << "Sala: " << ramal.sala << endl;
+        cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+        cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+        cout << "--------------------------" << endl;
+    }
+}
+
+/* QUESTÃO 2: PESQUISA DE RAMAIS */
+
+void pesquisarRamais(const vector<Ramal>& ramais) {
+    int opcao;
+
+    cout << "Escolha o metodo de pesquisa:" << endl;
+    cout << "1. Pesquisar por numero do ramal" << endl;
+    cout << "2. Pesquisar por setor" << endl;
+    cout << "3. Pesquisar por edificio" << endl;
+    cout << "4. Pesquisar por responsavel pelo ramal" << endl;
+    cout << "5. Pesquisar por responsavel pelo ateste da conta telefonica" << endl;
+    cout << "Escolha uma opcao: ";
+    cin >> opcao;
+
+    switch (opcao) {
+        case 1: {
+            int numeroRamal;
+            cout << "Digite o numero do ramal: ";
+            cin >> numeroRamal;
+
+            bool encontrado = false;
+            for (size_t i = 0; i < ramais.size(); ++i) {
+                const Ramal& ramal = ramais[i];
+                if (ramal.numero == numeroRamal) {
+                    encontrado = true;
+                    cout << "Ramal encontrado:" << endl;
+                    cout << "Ramal: " << ramal.numero << endl;
+                    cout << "Categoria: " << ramal.categoria << endl;
+                    cout << "Setor: " << ramal.setor << endl;
+                    cout << "Edificio: " << ramal.edificio << endl;
+                    cout << "Sala: " << ramal.sala << endl;
+                    cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+                    cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+                    cout << "--------------------------" << endl;
+                }
+            }
+            if (!encontrado) {
+                cout << "Ramal nao encontrado." << endl;
+            }
+            break;
+        }
+        case 2: {
+            string setorPesquisa;
+            cout << "Digite o setor: ";
+            cin.ignore();
+            getline(cin, setorPesquisa);
+
+            bool encontrado = false;
+            for (size_t i = 0; i < ramais.size(); ++i) {
+                const Ramal& ramal = ramais[i];
+                if (ramal.setor == setorPesquisa) {
+                    encontrado = true;
+                    cout << "Ramal encontrado:" << endl;
+                    cout << "Ramal: " << ramal.numero << endl;
+                    cout << "Categoria: " << ramal.categoria << endl;
+                    cout << "Setor: " << ramal.setor << endl;
+                    cout << "Edificio: " << ramal.edificio << endl;
+                    cout << "Sala: " << ramal.sala << endl;
+                    cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+                    cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+                    cout << "--------------------------" << endl;
+                }
+            }
+            if (!encontrado) {
+                cout << "Nenhum ramal encontrado para o setor informado." << endl;
+            }
+            break;
+        }
+         case 3: {
+            int edificioPesquisa;
+            cout << "Digite o edificio (500 ou 505): ";
+            cin >> edificioPesquisa;
+
+            while (edificioPesquisa != 500 && edificioPesquisa != 505) {
+                cout << "Codigo de edificio invalido. Digite 500 ou 505: ";
+                cin >> edificioPesquisa;
+            }
+
+            bool encontrado = false;
+            for (size_t i = 0; i < ramais.size(); ++i) {
+                const Ramal& ramal = ramais[i];
+                if (ramal.edificio == edificioPesquisa) {
+                    encontrado = true;
+                    cout << "Ramal encontrado:" << endl;
+                    cout << "Ramal: " << ramal.numero << endl;
+                    cout << "Categoria: " << ramal.categoria << endl;
+                    cout << "Setor: " << ramal.setor << endl;
+                    cout << "Edificio: " << ramal.edificio << endl;
+                    cout << "Sala: " << ramal.sala << endl;
+                    cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+                    cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+                    cout << "--------------------------" << endl;
+                }
+            }
+            if (!encontrado) {
+                cout << "Nenhum ramal encontrado para o edificio informado." << endl;
+            }
+            break;
+        }
+		case 4: {
+            string responsavelPesquisa;
+            cout << "Digite o responsavel pelo ramal: ";
+            cin.ignore();
+            getline(cin, responsavelPesquisa);
+
+            bool encontrado = false;
+            for (size_t i = 0; i < ramais.size(); ++i) {
+                const Ramal& ramal = ramais[i];
+                if (ramal.responsavelRamal == responsavelPesquisa) {
+                    encontrado = true;
+                    cout << "Ramal encontrado:" << endl;
+                    cout << "Ramal: " << ramal.numero << endl;
+                    cout << "Categoria: " << ramal.categoria << endl;
+                    cout << "Setor: " << ramal.setor << endl;
+                    cout << "Edificio: " << ramal.edificio << endl;
+                    cout << "Sala: " << ramal.sala << endl;
+                    cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+                    cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+                    cout << "--------------------------" << endl;
+                }
+            }
+            if (!encontrado) {
+                cout << "Nenhum ramal encontrado para o responsavel informado." << endl;
+            }
+            break;
+        }
+        case 5: {
+            string responsavelAtestePesquisa;
+            cout << "Digite o responsavel pelo ateste da conta telefonica: ";
+            cin.ignore();
+            getline(cin, responsavelAtestePesquisa);
+
+            bool encontrado = false;
+            for (size_t i = 0; i < ramais.size(); ++i) {
+                const Ramal& ramal = ramais[i];
+                if (ramal.responsavelConta == responsavelAtestePesquisa) {
+                    encontrado = true;
+                    cout << "Ramal encontrado:" << endl;
+                    cout << "Ramal: " << ramal.numero << endl;
+                    cout << "Categoria: " << ramal.categoria << endl;
+                    cout << "Setor: " << ramal.setor << endl;
+                    cout << "Edificio: " << ramal.edificio << endl;
+                    cout << "Sala: " << ramal.sala << endl;
+                    cout << "Responsavel pelo ramal: " << ramal.responsavelRamal << endl;
+                    cout << "Responsavel pelo ateste da conta telefonica: " << ramal.responsavelConta << endl;
+                    cout << "--------------------------" << endl;
+                }
+            }
+            if (!encontrado) {
+                cout << "Nenhum ramal encontrado para o responsavel pelo ateste informado." << endl;
+            }
+            break;
+        }
+        default:
+            cout << "Opcao invalida." << endl;
+    }
+}
+
+int main() {
+    vector<Ramal> ramais;
+    int opcao;
+
+    do {
+        cout << "1. Cadastrar ramal" << endl;
+        cout << "2. Exibir ramais" << endl;
+        cout << "3. Pesquisar ramais" << endl;
+        cout << "4. Sair" << endl;
+        cout << "Escolha uma opcao: ";
+        cin >> opcao;
+
+        switch (opcao) {
+            case 1:
+                cadastrarRamal(ramais);
+                break;
+            case 2:
+                exibirRamais(ramais);
+                break;
+            case 3:
+                pesquisarRamais(ramais);
+                break;
+            case 4:
+                cout << "Saindo..." << endl;
+                break;
+            default:
+                cout << "Opcao invalida. Tente novamente." << endl;
+        }
+    } while (opcao != 4);
+
+    return 0;
+}
