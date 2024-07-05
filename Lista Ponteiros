@@ -1,29 +1,29 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
 struct Lista {
-    string valor;
+    char valor[100];
     Lista *proximo;
 };
 
 // Função para buscar um valor na lista
-Lista* buscar(Lista* cabeca, const string& k) {
+Lista* buscar(Lista* cabeca, const char* k) {
     Lista* x = cabeca;
-    while (x != nullptr && x->valor != k) {
+    while (x != NULL && strcmp(x->valor, k) != 0) {
         x = x->proximo;
     }
     return x;
 }
 
 // Função para inserir um novo valor na lista
-void inserir(Lista*& cabeca, const string& v) {
+void inserir(Lista*& cabeca, const char* v) {
     Lista* x = new Lista; // Aloca espaço na memória para o novo item da lista
-    x->valor = v;
-    if (cabeca == nullptr) {
+    strcpy(x->valor, v);
+    if (cabeca == NULL) {
         cabeca = x;
-        x->proximo = nullptr;
+        x->proximo = NULL;
     } else {
         x->proximo = cabeca;
         cabeca = x;
@@ -39,8 +39,8 @@ int main() {
             break;
         }
 
-        Lista* cabeca = nullptr;
-        string palavra;
+        Lista* cabeca = NULL;
+        char palavra[100];
 
         // Lê N palavras e insere na lista
         cout << "Digite " << N << " palavras:" << endl;
@@ -55,14 +55,14 @@ int main() {
 
         // Busca a palavra na lista
         Lista* resultado = buscar(cabeca, palavra);
-        if (resultado != nullptr) {
+        if (resultado != NULL) {
             cout << "Valor " << resultado->valor << " encontrado" << endl;
         } else {
             cout << "Valor nao encontrado" << endl;
         }
 
         // Libera a memória alocada para a lista
-        while (cabeca != nullptr) {
+        while (cabeca != NULL) {
             Lista* temp = cabeca;
             cabeca = cabeca->proximo;
             delete temp;
