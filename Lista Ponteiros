@@ -1,1 +1,51 @@
 
+Uma das aplicações clássicas de ponteiros é a criação de listas encadeadas, uma estrutura capaz de aumentar de tamanho de forma dinâmica, isto é, seu tamanho não precisa ser definido previamente. O segredo para conseguir essa façanha é utilizar um ponteiro apontando para o próximo elemento da lista, portanto,  cada item da lista ligada pode ser implementado como um registro que possui dois membros: um valor armazenado e um ponteiro para o próximo elemento.  O trecho de código descrito a seguir, ilustra como declarar uma lista encadeada usando c++.
+_____________________________________________________________
+struct lista{
+  int valor;
+  struct lista *proximo;
+}
+______________________________________________________________
+
+Para se realizar uma busca dentro de uma lista encadeada basta percorrer a lista a partir da cabeça até encontrar o elemento desejado k ou o ponteiro para o próximo elemento de um item ser nulo, conforme o pseudo-código a seguir:
+______________________________________________________________________
+buscar(cabeca, k){ // k é o valor a ser pesquisado dentro da lista
+  x = cabeca // cabeca é um ponteiro para o início da lista
+  enquanto x != nulo e x.valor != k
+     x = x.proximo
+  retorna x
+}
+______________________________________________________________________
+
+Para inserir um elemento na lista, você deve apontar o ponteiro próximo do novo elemento para o próximo da cabeça da lista e em seguida, fazer com que o próximo da cabeça seja o novo item, conforme demonstra o pseudo-código abaixo:
+_______________________________________________________________________
+inserir(cabeca, v){ 
+  declara x // aloca espaço na memória para o novo item da lista
+  x.valor = v
+  se cabeca = NULL{
+    cabeca = x
+  }senao{
+   x.proximo = cabeca
+   cabeca = x
+  }
+   
+}
+
+Com base nessas informações, faça um programa que usuário forneça palavras na entrada e armazene em uma lista encadeada. O programa deve receber primeiramente um número N indicando quantas palavras serão armazenadas. Daí, o programa irá ler N+1 palavras. Em seguida, utilize a primeira palavra para fazer a busca dentro da lista encadeada. Quando o usuário digitar N = 0, o programa deve ser interrompido.
+_______________________________________________________________________________
+
+exemplo de entrada                          exemplo de saída
+
+2                                                           valor nao encontrado
+pera
+uva
+maca
+
+
+
+3                                                            valor pera encontrado
+pera
+maca
+laranja
+abacate
+pera
