@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector<int> somaVetores(const vector<vector<int> >& vetores) {
+vector<int> soma(const vector<vector<int> >& vetores) { //função que soms os vetores
     if (vetores.empty()) {
         return vector<int>();
     }
@@ -22,17 +22,18 @@ vector<int> somaVetores(const vector<vector<int> >& vetores) {
 }
 
 int main() {
-    ifstream arquivoEntrada("vetores.txt");
+    ifstream file;
     ofstream arquivoSaida("soma.txt");
     string linha;
     vector<vector<int> > vetores;
 
-    if (!arquivoEntrada) {
-        cerr << "Erro ao abrir o arquivo vetores.txt" << endl;
+	file.open("vetores.txt");
+    if (!file) {
+        cerr << "erro ao abrir 'vetores.txt'" << endl;
         return 1;
     }
 
-    while (getline(arquivoEntrada, linha)) {
+    while (getline(file, linha)) {
         stringstream ss(linha);
         int numero;
         vector<int> vetor;
@@ -42,19 +43,19 @@ int main() {
         }
 
         vetores.push_back(vetor);
-    }
-
-    vector<int> resultado = somaVetores(vetores);
+	}
+    vector<int> resultado = soma(vetores);
+	file.close();
 
     if (arquivoSaida) {
         for (size_t i = 0; i < resultado.size(); ++i) {
             arquivoSaida << resultado[i] << (i == resultado.size() - 1 ? "\n" : " ");
         }
     } else {
-        cerr << "Erro ao abrir o arquivo soma.txt" << endl;
+        cerr << "erro ao criar soma.txt" << endl;
         return 1;
     }
 
-    cout << "A soma dos vetores foi salva em soma.txt" << endl;
+    cout << "resultado salvo em soma.txt" << endl;
     return 0;
 }
