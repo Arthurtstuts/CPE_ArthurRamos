@@ -1,0 +1,60 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+vector<int> somaVetores(const vector<vector<int> >& vetores) {
+    if (vetores.empty()) {
+        return vector<int>();
+    }
+
+    vector<int> soma(vetores[0].size(), 0);
+    for (size_t i = 0; i < vetores.size(); ++i) {
+        for (size_t j = 0; j < vetores[i].size(); ++j) {
+            soma[j] += vetores[i][j];
+        }
+    }
+
+    return soma;
+}
+
+int main() {
+    ifstream arquivoEntrada("vetores.txt");
+    ofstream arquivoSaida("soma.txt");
+    string linha;
+    vector<vector<int> > vetores;
+
+    if (!arquivoEntrada) {
+        cerr << "Erro ao abrir o arquivo vetores.txt" << endl;
+        return 1;
+    }
+
+    while (getline(arquivoEntrada, linha)) {
+        stringstream ss(linha);
+        int numero;
+        vector<int> vetor;
+
+        while (ss >> numero) {
+            vetor.push_back(numero);
+        }
+
+        vetores.push_back(vetor);
+    }
+
+    vector<int> resultado = somaVetores(vetores);
+
+    if (arquivoSaida) {
+        for (size_t i = 0; i < resultado.size(); ++i) {
+            arquivoSaida << resultado[i] << (i == resultado.size() - 1 ? "\n" : " ");
+        }
+    } else {
+        cerr << "Erro ao abrir o arquivo soma.txt" << endl;
+        return 1;
+    }
+
+    cout << "A soma dos vetores foi salva em soma.txt" << endl;
+    return 0;
+}
